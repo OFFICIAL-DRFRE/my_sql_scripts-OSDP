@@ -6,6 +6,5 @@ This repo will help you utilize the sales and distribution reports effectively. 
 
 <img src = 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Flogos-download.com%2Fwp-content%2Fuploads%2F2016%2F03%2FUnilever_logotype_emblem_logo.png&f=1&nofb=1&ipt=dd397190d03eabd2bc29cc1d20d9424eadd9c9ceb9c2e75021cbb990fb42a9f3&ipo=images' width=100px/>
 
-
 ### Prepared by: [Frehiwot Berhe](https://www.linkedin.com/in/frehiwot-hagos/)
 
