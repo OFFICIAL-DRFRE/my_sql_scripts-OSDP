@@ -1,0 +1,25 @@
+Update PRICE_STRUCTURE set 
+  PRICE_UNIT3= w.price_unit3,
+  --EFFECTIVE_DATE= CAST(cast(getdate() as date)AS DATETIME), 
+  PRICE_UNIT1=(select sell_factor1 from sku where sku= w.sku)* w.price_unit3, 
+  PRICE_UNIT2=(select sell_factor2 from sku where sku=w.sku) * w.price_unit3, 
+  DISTRIBUTOR=(select DISTRIBUTOR from distributor), EFFECTIVE_TODATE= '20251030' from PRICE_STRUCTURE p
+  INNER JOIN waga w on w.sku=p.SKU and max(p.PRICE_STRUC)= (select max(price_struc) from waga)
+  --where sku in sku in (select sku from sku_category where sku_index>0)
+
+update PRICE_STRUCTURE set
+  PRICE_STANDARD=PRICE_UNIT1, RPRICE_UNIT1=PRICE_UNIT1, 
+  RPRICE_UNIT2=PRICE_UNIT2, RPRICE_UNIT3=PRICE_UNIT3,RPRICE_STANDARD=PRICE_UNIT1,GPRICE_UNIT1=PRICE_UNIT1, 
+  GPRICE_UNIT2=PRICE_UNIT2, GPRICE_UNIT3=PRICE_UNIT3, GRPRICE_UNIT1=PRICE_UNIT1, GRPRICE_UNIT2=PRICE_UNIT2, 
+  GRPRICE_UNIT3=PRICE_UNIT3, Commission=0, PRICE_PURCHASE1=PRICE_UNIT1, PRICE_PURCHASE2=PRICE_UNIT2, 
+  PRICE_PURCHASE3=PRICE_UNIT3, GPRICE_PURCHASE1=PRICE_UNIT1, GPRICE_PURCHASE2=PRICE_UNIT2, GPRICE_PURCHASE3=PRICE_UNIT3, 
+  SED=0, MRSP=0, FMR=0, UNLOADING_CHARGES=0, SPECIAL_DISCOUNT=0, FOODSERVICE_DISCOUNT=0, DIS_BUILDING_ALLOWANCE=0,
+  GST_REGISTERED=15, GST_NREGISTERED=15
+INNER JOIN waga w on w.sku=p.SKU and w.price_struc=p.PRICE_STRUC
+
+
+  create table waga(
+sku varchar(20),
+price_struc varchar(4),
+price_unit3 decimal(22,8)
+)

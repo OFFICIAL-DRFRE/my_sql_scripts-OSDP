@@ -1,6 +1,6 @@
 use CENTEGY_SNDPRO_UET
-Declare @datefrom date='20230201'
-Declare @dateTo date='20230228'
+Declare @datefrom date='20230301'
+Declare @dateTo date='20230328'
 
 select td.DISTRIBUTOR,d.NAME "KD Name",DA.DOC_NO, convert(varchar,td.doc_date,23) DOC_DATE, REF_NO,
 --ROW_NUMBER() over(partition by da.Doc_no order by td.sku) 'Sr no.',td.BATCH 'Entry type',
