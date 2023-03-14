@@ -10,7 +10,8 @@ select distinct
 		convert(varchar, EndDate,23) as 'End Date',  
 		case
 			when ActiveIndicator=1 then 'Yes'
-			else 'No' end as 'Active'
+			else 'No' 
+		end as 'Active'
 from IG_I_PromotionControl p
 	inner join IG_I_PromotionCustomer pc on pc.PromotionCode = p.PromotionCode
 	inner join ig_i_PromotionAssignment pa on pa.promotionCode = p.PromotionCode
