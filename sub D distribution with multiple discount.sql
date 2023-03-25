@@ -1,6 +1,6 @@
 use centegy_sndpro_uet
-Declare @dateFrom date ='01-feb-2023'
-Declare @dateto   date ='18-feb-2023'
+Declare @dateFrom date ='18-Mar-2023'
+Declare @dateto   date ='24-Mar-2023'
 ;with sales as (
 select distinct cm.distributor 'DT Code',d.NAME 'KD Name',CM.POP_NAME 'customer_Name',
 SE.LDESC 'ChannelType',cm.town+cm.locality+cm.slocality+cm.POP 'POP_code', convert(varchar,cm.DOC_DATE,23) Doc_date, Cm.DOC_NO,year(cm.DOC_DATE) 'Year',
