@@ -4,6 +4,11 @@ inner Join PRICE_STRUCTURE ps on s.sku=ps.sku  and ps.PRICE_STRUC =(select max(P
 left join batch b on b.PRICE_STRUC=ps.PRICE_STRUC and b.BatchIndex=1
 where --s.ldesc like 'life%20g'
 ps.effective_date >= '20230301'
+s.sku in (
+68842511,
+69692279,
+69567634
+)
 group by ps.PRICE_STRUC,batch, s.SKU, s.LDESC,ps.price_unit3,effective_date
 
 ----- Comapny and 
