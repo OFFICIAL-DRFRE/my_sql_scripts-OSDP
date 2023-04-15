@@ -1,6 +1,6 @@
 use centegy_sndpro_uet
-Declare @datefr date = '20230101'
-Declare @dateto date = '20230131'
+Declare @datefr date = '20230325'
+Declare @dateto date = '20230331'
 
 select td.DISTRIBUTOR 'DT code',d.NAME 'KD Name', td.DOC_NO,convert(varchar, td.DOC_DATE, 23) Doc_date, st.LDESC 'Sku type',
 w.ldesc Warehouse, td.SKU, s.LDESC SKU,
