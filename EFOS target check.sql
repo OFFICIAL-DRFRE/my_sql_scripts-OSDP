@@ -1,0 +1,18 @@
+use centegy_sndpro_uet
+
+select * from MIS_KPI where FIELD_GROUP='802'
+
+select EDPCR01 as Planned_call,
+CASE WHEN ISNULL([EDPCR01],0)=0 THEN 0 ELSE (ISNULL([EDPCR03],0)/[EDPCR01])*100 END as 'PJP compliance %',
+* from MIS_KPI_DATA_802 where COMPANY='23' and YEAR='2023' and JCNO='04' and DAYNO='19'
+select * from IG_O_VisitSummary order by ETL_DateTime desc
+
+Select  PSD.STATUS_DATE,*
+from POP_STATUS_DETAIL PSD
+inner join POP_STATUS PS
+on PSD.PJP+PSD.TOWN+PSD.LOCALITY+PSD.SLOCALITY+PSD.POP=PS.PJP+PS.TOWN+PS.LOCALITY+PS.SLOCALITY+PS.POP and PSD.STATUS_DATE=PS.STATUS_DATE
+where PSD.DISTRIBUTOR = '15305226' and PSD.STATUS_DATE between '20230417' and '20230417' and PSD.PJP ='A001' and PS.SCHEDULED in ('0','1')
+
+
+--PJP compliance calculation %
+CASE WHEN ISNULL([EDPCR01],0)=0 THEN 0 ELSE (ISNULL([EDPCR03],0)/[EDPCR01])*100 END 
