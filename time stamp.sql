@@ -1,6 +1,6 @@
 use centegy_sndpro_uet
-Declare @startDate date='20220701'
-Declare @endDate   date='20220714'
+Declare @startDate date='20230401'
+Declare @endDate   date='20230414'
 
 select d.DISTRIBUTOR,d.NAME Kd_name, ps.PJP,ph.LDESC PJP,ps.town+ps.LOCALITY+ps.SLOCALITY+ps.POP [pop code],p.name outlet_name, convert(VARCHAR,STATUS_DATE,23) STATUS_DATE, 
 CONVERT(VARCHAR, MIN(ps.STATUS_TIME),22) 'Start time', CONVERT(varchar, MAX(EXIT_TIME),22) 'End Time' from POP_STATUS_DETAIL ps
