@@ -20,7 +20,7 @@ select
 			where active=1
 		) x
 		right join pop p2 on p2.town+p2.locality+p2.slocality+p2.pop = x.pop_code
-		 join distributor d on d.DISTRIBUTOR=x.DISTRIBUTOR
+		 join distributor d on d.DISTRIBUTOR = x.DISTRIBUTOR
 		where p2.ACTIVE =1
 	)y
 order by [Tagged POP] desc
