@@ -1,0 +1,1 @@
+update CASHMEMO_DETAIL set BATCH ='1-1' where sku in (select sku from batch where batch in ('1-1')) and DOC_DATE ='12-december-2018'

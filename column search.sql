@@ -1,0 +1,4 @@
+SELECT Table_Name
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE Column_Name = 'pop'
+GROUP BY Table_Name

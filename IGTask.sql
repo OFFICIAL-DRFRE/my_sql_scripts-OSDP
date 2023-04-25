@@ -1,0 +1,1 @@
+update IG_TASK set RESEND_ALL_DATA=1 where INTERFACE_NAME='setAuthorizedProduct'

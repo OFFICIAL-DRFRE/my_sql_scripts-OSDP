@@ -1,0 +1,19 @@
+select p.sku,LDESC,PRICE_STRUC, PRICE_UNIT3 from PRICE_STRUCTURE p
+inner join sku s on s.SKU=p.SKU
+where s.sku in ('67239843','67241129','68564723','68565082','68565085')
+
+select p.sku,LDESC,PRICE_STRUC, PRICE_UNIT3 from COMPANY_PRICE_STRUCTURE p
+inner join sku s on s.SKU=p.SKU
+where s.sku in ('68438724',
+'68438724',
+'68438724',
+'68438703',
+'68438703',
+'68438703',
+'68438746',
+'68438746',
+'68438746',
+'68438714',
+'68438714',
+'68438714'
+)

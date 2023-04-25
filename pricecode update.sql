@@ -1,0 +1,2 @@
+update RtCustomerPromotionMapping set enddate='20200821',ActiveIndicator=0
+where PromotionPlanNumber in (select PromotionPlanNumber from RtPromotionControl where PromotionCode in ('001~413','001~393'))

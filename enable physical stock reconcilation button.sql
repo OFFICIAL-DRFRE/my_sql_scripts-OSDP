@@ -1,0 +1,4 @@
+--Enable the offline physical stock approval step
+
+update APPLICATION_SETUP set PARAMETER_VALUE='N' where PARAMETER_ID='PHY_STK_APPROVAL_FLAG'
+update APPLICATION_SETUP set PARAMETER_VALUE='N' where PARAMETER_ID='NEW_USER_APPROVAL_FLAG'
