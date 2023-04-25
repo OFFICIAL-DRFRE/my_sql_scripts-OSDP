@@ -1,0 +1,32 @@
+update pr set pr.psa_sactdesc=c.ldesc from PR_GL_SA_SUBACCOUNTS pr, company c where psp_stypcode='0001' and psa_sactaccount='00001'
+update pr set pr.psa_sactdesc=c.sdesc from PR_GL_SA_SUBACCOUNTS pr, company c where psp_stypcode='0001' and psa_sactaccount='00002'
+
+--/ Object:  Table [dbo].[Screen_New]    Script Date: 05/08/2015 21:37:58 /
+SET ANSI_PADDING ON
+GO
+INSERT [dbo].[Screen_New] ([Master_Screen_ID], [Screen_ID], [SDESC], [LDESC], [Child_Exist], [INDEX_BY]) VALUES (1, 14, N'Physical Stock', N'Physical Stock', N'Y', 14)
+SET ANSI_PADDING OFF
+
+--/ Object:  Table [dbo].[Screen_New_Desig]    Script Date: 05/08/2015 21:37:58 /
+SET ANSI_PADDING ON
+GO
+INSERT [dbo].[Screen_New_Desig] ([Company], [Desig], [Status], [Master_Screen_ID], [Screen_ID], [SDESC], [LDESC], [Child_Exist]) VALUES (N'05', N'01', N'1', 1, 14, N'Physical Stock', N'Physical Stock', N'Y')
+SET ANSI_PADDING OFF
+
+--/ Object:  Table [dbo].[Child_Screen]    Script Date: 05/08/2015 21:37:58 /
+SET ANSI_PADDING ON
+GO
+INSERT [dbo].[Child_Screen] ([Master_Screen_ID], [Screen_ID], [Child_Screen_ID], [SDESC], [LDESC], [URL_Name], [Icon_File], [ToolTip_Text], [INDEX_BY]) VALUES (1, 14, 1, N'Download Physical Stock Sheet', N'Download Physical Stock Sheet', N'~/PhysicalStock/Presentation/PHY_STK_PhysicalStockDownload_EF.aspx', N'doc.gif', N'Download Physical Stock Sheet', 1)
+INSERT [dbo].[Child_Screen] ([Master_Screen_ID], [Screen_ID], [Child_Screen_ID], [SDESC], [LDESC], [URL_Name], [Icon_File], [ToolTip_Text], [INDEX_BY]) VALUES (1, 14, 2, N'Upload Filled Physical Stock Sheet', N'Upload Filled Physical Stock Sheet', N'~/PhysicalStock/Presentation/PHY_STK_PhysicalStockUploadView_EP.aspx', N'doc.gif', N'Upload Filled Physical Stock Sheet', 2)
+INSERT [dbo].[Child_Screen] ([Master_Screen_ID], [Screen_ID], [Child_Screen_ID], [SDESC], [LDESC], [URL_Name], [Icon_File], [ToolTip_Text], [INDEX_BY]) VALUES (1, 14, 3, N'Stock View All', N'Stock View All', N'~/PhysicalStock/Presentation/PHY_STK_PhysicalStockViewAll_EP.aspx', N'doc.gif', N'Stock View All', 3)
+INSERT [dbo].[Child_Screen] ([Master_Screen_ID], [Screen_ID], [Child_Screen_ID], [SDESC], [LDESC], [URL_Name], [Icon_File], [ToolTip_Text], [INDEX_BY]) VALUES (1, 14, 4, N'Stock Reconcile', N'Stock Reconcile', N'~/PhysicalStock/Presentation/PHY_STK_PhysicalStockProcessView_EP.aspx', N'doc.gif', N'Stock Reconcile', 4)
+SET ANSI_PADDING OFF
+
+--/ Object:  Table [dbo].[Child_Screen_Desig]    Script Date: 05/08/2015 21:37:58 /
+SET ANSI_PADDING ON
+GO
+INSERT [dbo].[Child_Screen_Desig] ([Company], [Desig], [Status], [Master_Screen_ID], [Screen_ID], [Child_Screen_ID], [SDESC], [LDESC], [URL_Name], [Icon_File], [ToolTip_Text]) VALUES (N'05', N'01', N'1', 1, 14, 1, N'Download Physical Stock Sheet', N'Download Physical Stock Sheet', N'~/PhysicalStock/Presentation/PHY_STK_PhysicalStockDownload_EF.aspx', N'doc.gif', N'Download Physical Stock Sheet')
+INSERT [dbo].[Child_Screen_Desig] ([Company], [Desig], [Status], [Master_Screen_ID], [Screen_ID], [Child_Screen_ID], [SDESC], [LDESC], [URL_Name], [Icon_File], [ToolTip_Text]) VALUES (N'05', N'01', N'1', 1, 14, 2, N'Upload Filled Physical Stock Sheet', N'Upload Filled Physical Stock Sheet', N'~/PhysicalStock/Presentation/PHY_STK_PhysicalStockUploadView_EP.aspx', N'doc.gif', N'Upload Filled Physical Stock Sheet')
+INSERT [dbo].[Child_Screen_Desig] ([Company], [Desig], [Status], [Master_Screen_ID], [Screen_ID], [Child_Screen_ID], [SDESC], [LDESC], [URL_Name], [Icon_File], [ToolTip_Text]) VALUES (N'05', N'01', N'1', 1, 14, 3, N'Stock View All', N'Stock View All', N'~/PhysicalStock/Presentation/PHY_STK_PhysicalStockViewAll_EP.aspx', N'doc.gif', N'Stock View All')
+INSERT [dbo].[Child_Screen_Desig] ([Company], [Desig], [Status], [Master_Screen_ID], [Screen_ID], [Child_Screen_ID], [SDESC], [LDESC], [URL_Name], [Icon_File], [ToolTip_Text]) VALUES (N'05', N'01', N'1', 1, 14, 4, N'Stock Reconcile', N'Stock Reconcile', N'~/PhysicalStock/Presentation/PHY_STK_PhysicalStockProcessView_EP.aspx', N'doc.gif', N'Stock Reconcile')
+SET ANSI_PADDING OFF

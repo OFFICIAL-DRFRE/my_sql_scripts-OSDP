@@ -1,0 +1,2 @@
+drop table IG_CONFIGURATION
+truncate table qs_delete_track

@@ -1,0 +1,2 @@
+update pr set pr.psa_sactdesc=c.ldesc from PR_GL_SA_SUBACCOUNTS pr, company c where psp_stypcode='0001' and psa_sactaccount='00001'
+update pr set pr.psa_sactdesc=c.sdesc from PR_GL_SA_SUBACCOUNTS pr, company c where psp_stypcode='0001' and psa_sactaccount='00002'
