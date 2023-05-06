@@ -1,6 +1,7 @@
-delete from users where name not in
-('System Administrator','Promotion Sales Ops Team','CD Ops Assis.','LE Support')
-and DESIGNATION <>'01'
+delete from users 
+--where name not in
+--('System Administrator','Promotion Sales Ops Team','CD Ops Assis.','LE Support')
+--and DESIGNATION <>'01'
 go
 
 DECLARE @comp_code VARCHAR(2)
@@ -27,7 +28,13 @@ NULL as email,
 '0' as Is_notifiable,
 NULL as User_lang,
 NULL as Row_Ver,
-NULL as CELL_NO
+NULL as CELL_NO,
+Null as WF_SERIAL  ,
+Null as WF_STATUS  ,
+Null as USER_ENTRY ,
+Null as DATE_ENTRY ,
+Null as USER_MODIFY,
+Null as DATE_MODIFY
 from DL_Users dl join DESIGNATION d on dl.level=d.LDESC
 where not exists (select 1 from USERS u where dl.[user_id]=u.USER_ID)
 

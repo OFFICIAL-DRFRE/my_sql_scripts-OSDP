@@ -19,14 +19,14 @@ declare @Currency_Description varchar(50);
 declare @PQC_Approval_Required varchar(1);
 declare @Dist_SrNo varchar(4);
 
-Set @Dist_SrNo = '0512' -- Input the 4 digit Distributor Code that will make the Distributor as Unique. E.g. 1st Pilot DT is 0001 then 2nd DT should be "0002" and goes on.
+Set @Dist_SrNo = '3322' -- Input the 4 digit Distributor Code that will make the Distributor as Unique. E.g. 1st Pilot DT is 0001 then 2nd DT should be "0002" and goes on.
 
 set @compcode=(select COMPANY from COMPANY);
 set @distcode=(select DISTRIBUTOR from DISTRIBUTOR)
-set @Name ='RENGER INDUSTRY AND TRADING PLC-AA/BNT';
+set @Name ='ALEMAYEHU BEKELE';
 set @NTN ='s';
 set @GST ='as';
-set @Address1 ='Addis Ababa';
+set @Address1 ='Adama';
 set @Address2 ='';
 set @Weekoff ='Sun';
 set @Cm_Roundoff ='2';
@@ -34,8 +34,8 @@ set @Free_SKU_Claim ='Purchase';
 set @Scheme_On_Date ='O';
 set @Currency ='ETB';
 set @Currency_Description ='Ethiopian Birrs';
-set @towncode='T0001'
-set @phone='++2519xxxxxxx';
+set @towncode='T0013'
+set @phone='++251900';
 set @email='';
 set @default_VAT=(select MAX(gst_registered) from sku)
 set @sales_organization='F611'        --- Sales Organization Code of Distributor associated with it in SAP

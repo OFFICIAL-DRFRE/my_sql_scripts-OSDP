@@ -6,7 +6,7 @@ DECLARE @oldDist_code VARCHAR(10)
 DECLARE @newDist_code VARCHAR(10)
 
 SET @oldDist_code = (select DISTRIBUTOR from DISTRIBUTOR)
-SET @newDist_code = '15490031'
+SET @newDist_code = '18015726'
 
 EXEC sp_msforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'
 

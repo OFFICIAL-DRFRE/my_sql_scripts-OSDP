@@ -1,6 +1,6 @@
 use centegy_sndpro_uet
-Declare @p varchar(4)='AA01'
-Declare @week_in_cycle int=2
+Declare @p varchar(4)='B001'
+Declare @week_in_cycle int=4
 Declare @weekno int
 
 insert into SECTION_POP_PERMANENT

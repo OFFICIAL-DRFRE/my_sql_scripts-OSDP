@@ -17,6 +17,6 @@ from PHYSICAL_STOCK_DETAIL pd
 	inner join SKU s on s.sku = pd.SKU
 	inner join SKU_TYPE st on st.SKU_TYPE=pd.SKU_TYPE
 	inner join warehouse w on w.warehouse = ph.warehouse
-where  DATE_ENTRY >= @datefr AND STATUS ='A'
+where  DATE_ENTRY >= @datefr --AND STATUS ='A'
 		--and REF_QTY1=QTY1 and ref_qty2 = qty2 and REF_QTY3 = QTY3
 order by 2, 1, 5, status

@@ -12,13 +12,13 @@ Declare @date date= (select top 1 WORKING_DATE from DISTRIBUTOR)
 Declare @weekno numeric=(select week_no from JC_WEEK where START_DATE <= cast(@date as date) and END_DATE >= cast(@date as date))
 
 select pd.PJP, ph.LDESC pPJP_name,pd.section, se.SDESC section_name, 
-	case when MON = 0 then ' ' else 'x'  end as MON  , 
-	case when TUE = 0 then ' ' else 'x'  end as TUE , 
-	case when wed = 0 then ' ' else 'x'  end as WED , 
-	case when thu = 0 then ' ' else 'x'  end as thu , 
-	case when FRI = 0 then ' ' else 'x'  end as FRI , 
-	case when sat = 0 then ' ' else 'x'  end as SAT , 
-	case when SUN = 0 then ' ' else 'x'  end as SUN ,
+	case when MON = 0 then ' ' else N'✓'  end as MON  , 
+	case when TUE = 0 then ' ' else N'✓'  end as TUE , 
+	case when wed = 0 then ' ' else N'✓'  end as WED , 
+	case when thu = 0 then ' ' else N'✓'  end as thu , 
+	case when FRI = 0 then ' ' else N'✓'  end as FRI , 
+	case when sat = 0 then ' ' else N'✓'  end as SAT , 
+	case when SUN = 0 then ' ' else N'✓'  end as SUN ,
 	convert(varchar, Ph.working_date, 23) as working_date
 from PJP_detail pd  
 	inner join section se on se.section = pd.SECTIon and se.SELL_CATEGORY=pd.SELL_CATEGORY
