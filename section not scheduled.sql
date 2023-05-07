@@ -2,7 +2,7 @@ use centegy_sndpro_uet
 Declare @sdate date = (select working_date from distributor)
 Declare @weekno varchar(2)=(select week_no from JC_WEEK where START_DATE <= @sdate and END_DATE >= @sdate)
 
-select DISTINCT  @weekno week_no, datename(WEEKDAY, getdate()) Today, PD.PJP, ph.ldesc PJP, ph.ACTIVE,pd.section, s.ldesc section, 
+select DISTINCT  @sdate working_date, @weekno week_no, datename(WEEKDAY, getdate()) Today, PD.PJP, ph.ldesc PJP, ph.ACTIVE,pd.section, s.ldesc section, 
 	case when MON = 1 then N'✓' else ' ' end MON, 
 	case when TUE = 1 then N'✓' else ' ' end TUE, 
 	case when WED = 1 then N'✓' else ' ' end WED, 

@@ -18,19 +18,19 @@ CREATE TABLE sectionpop_temp (
 );
 go
 
-declare @dtcode varchar(10) = (select top 1 DISTRIBUTOR from DISTRIBUTOR)
-
 insert into SECTION_POP_PERMANENT
-	(COMPANY,TOWN,LOCALITY,SLOCALITY,POP,DISTRIBUTOR,SELL_CATEGORY,STATUS_DAY,SECTION,PJP, pop_index)
+	(COMPANY, distributor,TOWN,LOCALITY,SLOCALITY,POP,SELL_CATEGORY,STATUS_DAY,SECTION,PJP, pop_index)
 select 
-	'23',TOWN,LOCALITY,slocality,pop,@dtcode,'001','99',section,pjp, pop_index  from sectionpop_temp
+	COMPANY, distributor, TOWN,LOCALITY,slocality,pop,sell_category,'99',section,pjp, pop_index  from sectionpop_temp
 where 
 	town+locality+slocality+pop not in ( select town+locality+slocality+pop from SECTION_POP_PERMANENT)
 
 insert into SECTION_POP
 	(COMPANY,TOWN,LOCALITY,SLOCALITY,POP,DISTRIBUTOR,SELL_CATEGORY,STATUS_DAY,SECTION,PJP, pop_index, working_date)
 select 
-	'23',TOWN,LOCALITY,slocality,pop,@dtcode,'001','99',section,pjp, pop_index , (select working_date from distributor) from sectionpop_temp
+	COMPANY,TOWN,LOCALITY,slocality,pop,distributor,sell_category,'99',section,pjp, pop_index , 
+	(select working_date from distributor) 
+	from sectionpop_temp
 where 
 	town+locality+slocality+pop not in ( select town+locality+slocality+pop from SECTION_POP)
 go
