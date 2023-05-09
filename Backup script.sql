@@ -4,8 +4,8 @@ DECLARE @fileName VARCHAR(256) -- filename for backup
 DECLARE @fileDate VARCHAR(20) -- used for file name
  
 -- specify database backup directory
-SET @path = 'C:\SQLSERVER CLASS\'  
- 
+SET @path = 'D:\DB_BackUP\'  
+
 -- specify filename format
 SELECT @fileDate = CONVERT(VARCHAR(20),GETDATE(),112) 
  
