@@ -19,9 +19,9 @@ update STOCK_BATCH
 set  
 	OPEN_3= OPEN_3 + st.total_in_pcs
 from stock_batch SB
-	inner join stock_temp st on st.sku=sb.sku and sb.warehouse=@wh and sb.week_no=@weekno and sb.batch=@batch and SB.year= year(@DATE) and sb.sku_type=@stocktype
+	inner join stock_temp st on st.sku=sb.sku and sb.warehouse=@wh and sb.week_no=@weekno and sb.batch=@batch and SB.year= year(@DATE) and sb.stock_type=@stocktype
 
 select * from STOCK_BATCH sb
-inner join stock_temp st on st.sku=sb.sku and sb.warehouse=@wh and sb.week_no=@weekno and sb.batch=@batch and SB.year= year(@DATE) and sb.sku_type=@stocktype
+inner join stock_temp st on st.sku=sb.sku and sb.warehouse=@wh and sb.week_no=@weekno and sb.batch=@batch and SB.year= year(@DATE) and sb.stock_type=@stocktype
 
 
