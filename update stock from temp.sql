@@ -1,7 +1,7 @@
---create table stock_temp(
---sku varchar(20),
---total_in_pcs numeric
---)
+create table STOCK_TEMP(
+	sku varchar(20) primary key not null,
+	total_in_pcs numeric not null
+)
 
 Declare @date date = cast( (select working_date from distributor) as date)
 
@@ -19,9 +19,9 @@ update STOCK_BATCH
 set  
 	OPEN_3= OPEN_3 + st.total_in_pcs
 from stock_batch SB
-	inner join stock_temp st on st.sku=sb.sku and sb.warehouse=@wh and sb.week_no=@weekno and sb.batch=@batch and SB.year= year(@DATE) and sb.sku_type=@stocktype
+	inner join dbo.stock_temp st on st.sku=sb.sku and sb.warehouse=@wh and sb.week_no=@weekno and sb.batch=@batch and SB.year= year(@DATE) and sb.sku_type=@stocktype
 
 select * from STOCK_BATCH sb
-inner join stock_temp st on st.sku=sb.sku and sb.warehouse=@wh and sb.week_no=@weekno and sb.batch=@batch and SB.year= year(@DATE) and sb.sku_type=@stocktype
-
-
+inner join dbo.stock_temp st on st.sku=sb.sku and sb.warehouse=@wh and sb.week_no=@weekno and sb.batch=@batch and SB.year= year(@DATE) and sb.sku_type=@stocktype
+go
+DROP TABLE DBO.STOCK_TEMP
