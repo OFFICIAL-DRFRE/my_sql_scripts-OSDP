@@ -1,0 +1,23 @@
+DECLARE @TableName VARCHAR(255)
+DECLARE @SQL NVARCHAR(MAX)
+DECLARE @RowCount INT
+
+DECLARE curTables CURSOR FOR
+SELECT TABLE_NAME
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='other_working_db'
+
+OPEN curTables
+
+FETCH NEXT FROM curTables INTO @TableName
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    SET @SQL = 'SELECT @RowCount = COUNT(*) FROM ' + @TableName
+    EXEC sp_executesql @SQL, N'@RowCount INT OUTPUT', @RowCount OUTPUT
+    PRINT @TableName + ': ' + CAST(@RowCount AS VARCHAR(10))
+    FETCH NEXT FROM curTables INTO @TableName
+END
+
+CLOSE curTables
+DEALLOCATE curTables

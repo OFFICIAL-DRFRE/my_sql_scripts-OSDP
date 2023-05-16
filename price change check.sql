@@ -1,15 +1,20 @@
 use Centegy_sndpro_uet
-select s.sku, s.ldesc, max(ps.price_struc)price_struc, convert(varchar,effective_date, 23) Effectvie_date, b.batch, convert(float, ps.price_unit3,2) 'Unit price',convert(float,round(ps.PRICE_UNIT3*1.15,2)) 'inc Vat'  from sku s
-inner Join PRICE_STRUCTURE ps on s.sku=ps.sku  and ps.PRICE_STRUC =(select max(PRICE_STRUC) from PRICE_STRUCTURE where sku=ps.SKU)
+select s.sku, s.ldesc, cast( max(ps.price_struc) as varchar) price_struc, --convert(varchar,effective_date, 23) Effectvie_date, b.batch, 
+convert(float, ps.price_unit3,2) 'Unit price',convert(float,round(ps.PRICE_UNIT3*1.15,2)) 'inc Vat'  from sku s
+inner Join PRICE_STRUCTURE ps on s.sku=ps.sku  
+	and ( ps.PRICE_STRUC =(select min(PRICE_STRUC) from PRICE_STRUCTURE where sku=ps.SKU)
+			OR ps.PRICE_STRUC =(select MAX(PRICE_STRUC) from PRICE_STRUCTURE where sku=ps.SKU)
+			)
 left join batch b on b.PRICE_STRUC=ps.PRICE_STRUC and b.BatchIndex=1
 where --s.ldesc like 'life%20g'
-ps.effective_date >= '20230301'
 s.sku in (
-68842511,
-69692279,
-69567634
+'68820838',
+'68820843',
+'68842532',
+'68565085'
 )
 group by ps.PRICE_STRUC,batch, s.SKU, s.LDESC,ps.price_unit3,effective_date
+ORDER BY SKU, PRICE_STRUC
 
 ----- Comapny and 
 with pr(price_type, sku, sku_desc, price_struc, effective_date, batch, unit_price, inc_vat) as (

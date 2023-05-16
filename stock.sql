@@ -1,5 +1,5 @@
 use centegy_sndpro_uet
-Declare @date date='20230428'
+Declare @date date='20230512'
 Declare @viewDetail int = 0
 
 ;with stock as (
@@ -28,7 +28,7 @@ select stk.distributor, stk.sku,
 )
 select 
 		d.DISTRIBUTOR,
-		d.NAME KD_Name,
+		d.NAME KD_Name, @DATE doc_date,
 		st.sku,s.ldesc 'SKU desc',
 		sum(cz) CS,sum(DZ) DZ,sum(PC) PC, 
 		sum(convert(int,(CZ * sell_factor1) + (DZ * sell_factor2) + PC)) 'Total in PC' 
