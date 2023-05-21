@@ -9,8 +9,10 @@ select distinct
 	jp.SequenceNumber 'Pseq', VisitSequence 'Aseq', VisitStartDateTime 'Start time', VisitEndDateTime 'end time', 
 	Right(convert(varchar(3),  datediff(SECOND, VisitStartDateTime, VisitEndDateTime)/60), 2) + ' m ' +
 	Right( '0' + convert(varchar(2),  datediff(SECOND, VisitStartDateTime, VisitEndDateTime)%60), 2)+ ' s' as 'TIO mm:ss',
-	cast(c.geocodeY as varchar)+', '+cast(c.GeoCodeX as varchar) 'Master Location', 
-	cast(vs.StartGeoCodeY as varchar)+', '+ cast(vs.StartGeoCodeX as varchar) 'Actual Location',
+	c.geocodeY 'Master Lat',
+	c.GeoCodeX 'Master Long', 
+	vs.StartGeoCodeY 'Act lat',
+	vs.StartGeoCodeX 'Actual Location',
 	round(dbo.distance(vs.StartGeoCodeY,vs.StartGeoCodeX,c.GeoCodey, c.GeoCodeX),0) 'distance(m)'
 from IG_O_VisitSummary vs
 	inner join IG_I_Customer c on c.CustomerCode=vs.CustomerCode
