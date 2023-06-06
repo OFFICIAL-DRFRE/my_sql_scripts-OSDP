@@ -1,6 +1,6 @@
 use centegy_sndpro_uet
 
-Declare @datefr date = '20230515'
+Declare @datefr date = '20230501'
 Declare @dateto date = '20230516'
 DECLARE @pjp varchar(4) = 'A006'
 
@@ -17,7 +17,7 @@ select distinct
 from IG_O_VisitSummary vs
 	inner join IG_I_Customer c on c.CustomerCode=vs.CustomerCode
 	inner join IG_I_JourneyPlan jp on jp.JourneyPlanCode = vs.RouteCode and vs.CustomerCode=jp.CustomerCode
-	inner join PJP_HEAD ph on ph.pjp=vs.RouteCode
+	inner join PJP_HEAD ph on ph.pjp = vs.RouteCode
 where vs.ETL_DateTime between @datefr and dateadd(d,1, @dateto) 
 	--and vs.RouteCode = @pjp    -- To filter by PJP uncomment this line
 order by  vs.routecode, 'pseq' 

@@ -27,7 +27,7 @@ select stk.distributor, stk.sku, warehouse, sku_type,
 )
 select 
 		d.DISTRIBUTOR,
-		d.NAME KD_Name,
+		d.NAME KD_Name, @DATE doc_date,
 		w.LDESC warehouse, ty.ldesc 'SKU type',
 		st.sku,s.ldesc 'SKU desc',
 		sum(cz) CS,sum(DZ) DZ,sum(PC) PC, 
@@ -38,6 +38,6 @@ from stock st
 		inner join WAREHOUSE w on w.WAREHOUSE = st.warehouse
 		inner join sku_type ty on ty.sku_type = st.sku_type
 where 
-	s.ldesc like '%__0ml'
+	s.ldesc like 'sunl%60x175g'
 group by d.DISTRIBUTOR,d.NAME, st.sku,s.ldesc, w.ldesc, ty.ldesc
 order by s.LDESC asc

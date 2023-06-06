@@ -9,7 +9,7 @@ DECLARE @table_name NVARCHAR(MAX);
 DECLARE cursor_tables CURSOR FOR
     SELECT QUOTENAME(s.name) + N'.' + QUOTENAME(t.name)
     FROM sys.tables t
-    INNER JOIN sys.schemas s ON s.schema_id = t.schema_id;
+    INNER JOIN sys.schemas s ON s.schema_id = t.schema_id
 	where type = 'U'
 	
 OPEN cursor_tables
