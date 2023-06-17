@@ -14,8 +14,8 @@ case when visit_type='01' then 'Un Processed'when visit_type='02'then 'GIN Done'
 inner join section s on s.SECTION= c.SECTION
 inner join PJP_HEAD ph on ph.PJP=c.PJP 
 
---where DOC_DATE in ( @datefrom , @Changeto) --and VISIT_TYPE='01'
-WHERE DOC_DATE >= @ydate
+where DOC_DATE in ( @datefrom , @Changeto) --and VISIT_TYPE='01'
+--WHERE DOC_DATE >= @ydate
 group by ph.pjp,Ph.ldesc, DOC_DATE,s.ldesc,DELV_DATE, Delv_date,Schedule_Delv_Date,VISIT_TYPE
 
 Update CASHMEMO_DETAIL set DOC_DATE=@changeto where DOC_NO in 

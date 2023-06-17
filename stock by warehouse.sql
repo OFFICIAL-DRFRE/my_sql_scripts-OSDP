@@ -1,5 +1,5 @@
 use centegy_sndpro_uet
-Declare @date date='20230413'
+Declare @date date= ( SELECT WORKING_DATE FROM DISTRIBUTOR)
 
 ;with stock as (
 select stk.distributor, stk.sku, warehouse, sku_type,

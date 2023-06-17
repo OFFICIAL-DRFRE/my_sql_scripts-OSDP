@@ -1,11 +1,17 @@
 use centegy_sndpro_uet
 
+/*
+	001	Non-Merchandised
+	003	Enrolled Stores 4P
+*/
 update POP set PERFECT_STORE_DATE= cast(getdate() as date), PERFECT_STORE_LEVEL='003'
 where town+LOCALITY+SLOCALITY+POP in (
+	-- copy the POP code here with single quotes and commas.
 
+	--Don't forget to remove the last comma
 )
-
 go
+
 
 Select distinct
 	t.ldesc town,

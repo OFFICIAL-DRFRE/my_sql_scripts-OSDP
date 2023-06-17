@@ -1,6 +1,7 @@
+
 use Centegy_SnDPro_UET
-Declare @datefr date ='20230101'
-Declare @dateto date ='20230331'
+Declare @datefr date ='20230501'
+Declare @dateto date ='20230531'
 
 select m, town, 
 	total_pop,

@@ -13,8 +13,8 @@ convert(varchar,discount_val)+' %' Discount,REPLACE(convert(varchar,convert(Mone
 inner join memory_variable_Detail m on ((m.value like (select '%'+distributor+'%' from distributor) and m.ColumnName ='Distributor') or m.ColumnName!='Distributor')
 and [Promo code]= m.MAIN_PROCESS+'~' + m.seq_id
 where --Pop_type='04'  
---sku_desc like 'signal%30g'
-m.SEQ_ID in (596, 625, 630)
+sku_desc like 'Knorr%Fort%'
+--m.SEQ_ID in (596, 625, 630)
 group by pbs_expire,[Promo code],pbs_desc,sku,sku_desc,PRICE_STRUC,[PC/Cs], [Price w/vat],Pop_type,discount_val,[Case Price],pbs_period_fr,pbs_period_to
 having count(sku)>1 and count(pop_type)>1 
 order by [promo on] desc,sku, [Promo code]

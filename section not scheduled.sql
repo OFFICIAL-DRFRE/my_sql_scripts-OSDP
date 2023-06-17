@@ -16,8 +16,8 @@ from PJP_detail pd
 inner join PJP_head ph on ph.pjp=pd.pjp and ph.sell_category=pd.sell_category
 inner join section s on s.section = pd.section and s.sell_category =pd.sell_category 
 inner join DSR d on d.DSR=ph.DSR
-where pd.week_no = @weekno and pd.PJP not in ( select pjp from cashmemo where doc_date = @sdate) 
---and ph.PJP = 'AA01'
+where pd.week_no = @weekno --and pd.PJP not in ( select pjp from cashmemo where doc_date = @sdate) 
+-- and ph.PJP = 'YMJ6'
 
 UPDATE PJP_detail SET 	
 	MON = (CASE when datename(weekday, @SDATE) = 'Monday' 	 then 0 ELSE MON END),
@@ -27,5 +27,6 @@ UPDATE PJP_detail SET
 	FRI = (CASE when datename(weekday, @SDATE) = 'Friday' 	 then 0 ELSE FRI END),
 	SAT = (CASE when datename(weekday, @SDATE) = 'Saturday'  then 0 ELSE SAT END),
 	SUN = (CASE when datename(weekday, @SDATE) = 'Sunday'  	 then 0 ELSE SUN END)
-WHERE PJP NOT IN ( SELECT PJP FROM CASHMEMO WHERE DOC_DATE = @SDATE) AND WEEK_NO = @WEEKNO
+WHERE WEEK_NO = @WEEKNO
 AND SECTION NOT IN ( SELECT SECTION FROM CASHMEMO WHERE DOC_DATE = @SDATE)
+

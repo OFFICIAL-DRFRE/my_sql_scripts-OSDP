@@ -1,6 +1,5 @@
 use centegy_sndpro_uet
-Declare @date date='20230512'
-Declare @viewDetail int = 0
+Declare @date date= (SELECT DateAdd(day, -1, WORKING_DATE) FROM DISTRIBUTOR)
 
 ;with stock as (
 select stk.distributor, stk.sku,

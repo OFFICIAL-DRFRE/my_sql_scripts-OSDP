@@ -1,12 +1,12 @@
 use centegy_sndpro_uet
 
-Declare @sdate date = getdate()
+Declare @sdate date = (SELECT WORKING_DATE FROM DISTRIBUTOR)
 Declare @weekno numeric=(
 	select week_no from JC_WEEK 
 	where START_DATE <= cast(@sdate as date) 
 		and END_DATE >= cast(@sdate as date))
 
-Declare @s varchar(20)=67474454
+Declare @s varchar(20)=67474368
 Declare @cs numeric = 0	
 Declare @dz numeric = 0			
 Declare @pc numeric = 0
