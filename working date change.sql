@@ -1,8 +1,8 @@
 declare @working_date datetime 
 declare @closing_date datetime
  
-set @working_date='20230216';
-set @closing_date='20230216';
+set @working_date='20230620';
+set @closing_date='20230620';
  
  update DISTRIBUTOR set WORKING_DATE=@working_date, CLOSING_DATE=@closing_date
  update PJP_HEAD set WORKING_DATE=@working_date, CLOSING_DATE=@closing_date
