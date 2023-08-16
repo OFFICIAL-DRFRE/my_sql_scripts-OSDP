@@ -32,11 +32,13 @@ select
 		st.sku,s.ldesc 'SKU desc',
 		sum(cz) CS,sum(DZ) DZ,sum(PC) PC, 
 		sum(convert(int,(CZ * sell_factor1)+(DZ * sell_factor2)+PC)) 'Total in PC' 
+		
 from stock st
 		inner join SKU s on s.SKU=st.sku
 		inner join Distributor D on D.DISTRIBUTOR = st.DISTRIBUTOR
 		inner join WAREHOUSE w on w.WAREHOUSE = st.warehouse
 		inner join sku_type ty on ty.sku_type = st.sku_type
+		inner join price_structure ps on ps.sku =st.sku and ps.price_struc = '0001'
 where 
 	s.ldesc like 'sunl%60x175g'
 group by d.DISTRIBUTOR,d.NAME, st.sku,s.ldesc, w.ldesc, ty.ldesc

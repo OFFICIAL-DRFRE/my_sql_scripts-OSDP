@@ -15,7 +15,13 @@ select
 	S.LDESC 'SKU Name' ,
 	c.sku,c.amount 'GSV',
 	cast(((C.QTY1*s.sell_factor1)+(QTY2*s.sell_factor2)+(QTY3*s.sell_factor3))as int) 'Number of pcs', 
-	isnull(sd.discount+sd.gst,0) 'Discount Amt'
+	isnull(sd.discount+sd.gst,0) 'Discount Amt',
+	case 
+		when ps.ldesc = 'Enrolled Stores 4P' then 'PS',
+		when ps.ldesc = 'Enrolled Stores 5P' then '5PS'
+		else 'R' 
+	end as 'PS Status'
+		
 from CASHMEMO_DETAIL c
 	inner join sku s on s.sku = c.sku
 	inner join CASHMEMO cm on cm.DOC_NO=c.DOC_NO
@@ -25,6 +31,7 @@ from CASHMEMO_DETAIL c
 	inner join PJP_HEAD pj on pj.SELL_CATEGORY = cm.SELL_CATEGORY and pj.PJP = cm.PJP
 	inner join DSR ds on pj.distributor = ds.distributor and pj.DSR = ds.DSR
 	left join scheme_discount_detail sd on sd.doc_no=c.doc_no and sd.sku=c.sku
+	inner join perfect_store_level ps on ps.level_code = p.perfect_store_level
 where cm.sub_document in ('01','02','03','04') and cm.document ='cm'  and cm.visit_type='02'
 	and cm.Delv_date between @datefr and @dateto 
 order by DOC_DATE desc

@@ -3,7 +3,7 @@ USE centegy_sndpro_uet
 DECLARE @datefr date = '20230601'
 DECLARE @dateto date = '20230630'
 DECLARE @pjp varchar(4) = 'A006'
-Declare @accuracy_radius int = 19
+Declare @accuracy_radius int = 20
 
 ;WITH tio AS (
     SELECT DISTINCT 
@@ -56,5 +56,5 @@ SELECT
 FROM
     tio t
     INNER JOIN diff d ON d.POP_CODE = t.CustomerCode and t.[TIO mm:ss]=Max_TIO_mm_ss
-where accuracy < @accuracy_radius
+where accuracy > @accuracy_radius
 order by accuracy desc
