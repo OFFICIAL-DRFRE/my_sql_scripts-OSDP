@@ -16,19 +16,14 @@ select
 	c.sku,c.amount 'GSV',
 	cast(((C.QTY1*s.sell_factor1)+(QTY2*s.sell_factor2)+(QTY3*s.sell_factor3))as int) 'Number of pcs', 
 	isnull(sd.discount+sd.gst,0) 'Discount Amt',
-	case 
-		when ps.ldesc = 'Enrolled Stores 4P' then 'PS',
-		when ps.ldesc = 'Enrolled Stores 5P' then '5PS'
-		else 'R' 
-	end as 'PS Status'
-		
+	REPLACE(ps.sdesc, 'ES', '') 'PS Status' 
 from CASHMEMO_DETAIL c
 	inner join sku s on s.sku = c.sku
-	inner join CASHMEMO cm on cm.DOC_NO=c.DOC_NO
-	inner join pop p on p.town+p.locality+p.slocality+p.pop = cm.town+cm.locality+cm.slocality+cm.pop
+	inner join CASHMEMO cm on cm.DOC_NO=c.DOC_NO and cm.distributor=c.distributor
+	inner join pop p on p.town+p.locality+p.slocality+p.pop = cm.town+cm.locality+cm.slocality+cm.pop and p.distributor=c.distributor
 	inner join SUB_ELEMENT SE on p.SUB_ELEMENT=SE.SUB_ELEMENT
 	inner join distributor d on d.distributor=c.distributor
-	inner join PJP_HEAD pj on pj.SELL_CATEGORY = cm.SELL_CATEGORY and pj.PJP = cm.PJP
+	inner join PJP_HEAD pj on pj.SELL_CATEGORY = cm.SELL_CATEGORY and pj.PJP = cm.PJP and pj.distributor=cm.distributor
 	inner join DSR ds on pj.distributor = ds.distributor and pj.DSR = ds.DSR
 	left join scheme_discount_detail sd on sd.doc_no=c.doc_no and sd.sku=c.sku
 	inner join perfect_store_level ps on ps.level_code = p.perfect_store_level
