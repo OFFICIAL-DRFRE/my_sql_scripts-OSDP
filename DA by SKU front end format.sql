@@ -6,7 +6,7 @@ select
 	td.DISTRIBUTOR,
 	d.NAME "KD Name",
 	DA.DOC_NO, 
-	convert(varchar,td.doc_date,23) DOC_DATE, 
+	convert(varchar,td.doc_date,23) DOC_DATE, o
 	REF_NO,
 	td.sku, s.ldesc 'SKU desc', 
 	cast( td.REF_QTY1 as int) CS,
