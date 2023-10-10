@@ -1,11 +1,11 @@
 declare @working_date datetime 
-declare @closing_date datetime
+declare @working_date datetime
  
 set @working_date='20230620';
-set @closing_date='20230620';
+
  
- update DISTRIBUTOR set WORKING_DATE=@working_date, CLOSING_DATE=@closing_date
- update PJP_HEAD set WORKING_DATE=@working_date, CLOSING_DATE=@closing_date
+ update DISTRIBUTOR set WORKING_DATE=@working_date, CLOSING_DATE=@working_date
+ update PJP_HEAD set WORKING_DATE=@working_date, CLOSING_DATE=@working_date
  update SECTION_POP set WORKING_DATE=@working_date
  delete from stock_batch where year+'-'+jcno+'-'+week_no not in (select max(year+'-'+jcno+'-'+week_no) from stock_batch)
  go
