@@ -19,8 +19,8 @@ select
 	p.longitude long,
 	REPLACE( ps.sdesc, 'ES', '') 'PS status'
 from pop p
-	LEFT JOIN SECTION_POP spp ON p.town+p.locality+p.slocality+p.pop = spp.town+spp.locality+spp.slocality+spp.pop
-	LEFT JOIN section ON spp.SECTION = SECTION.SECTION and spp.sell_category=section.sell_category
+	LEFT JOIN SECTION_POP spp ON p.distributor+p.town+p.locality+p.slocality+p.pop = spp.distributor+spp.town+spp.locality+spp.slocality+spp.pop
+	LEFT JOIN section ON spp.SECTION = SECTION.SECTION and spp.sell_category=section.sell_category and section.distributor = spp.DISTRIBUTOR
 	INNER JOIN TOWN ON p.TOWN= town.TOWN
 	INNER JOIN LOCALITY l ON p.LOCALITY = l.LOCALITY and p.TOWN = l.TOWN
 	INNER JOIN SUB_LOCALITY ON p.SLOCALITY = SUB_LOCALITY.SLOCALITY and SUB_LOCALITY.LOCALITY=p.LOCALITY and SUB_LOCALITY.TOWN = p.TOWN
@@ -29,5 +29,5 @@ from pop p
 	INNER JOIN POP_TYPE pt on pt.POPTYPE=p.POPTYPE
 	INNER JOIN Distributor d on d.DISTRIBUTOR=p.DISTRIBUTOR
 	INNER JOIN perfect_store_level ps on ps.level_code=p.perfect_store_level	
-WHERE P.ACTIVE = 1
+WHERE P.ACTIVE = 1 
 order by section.SECTION asc
