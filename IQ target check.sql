@@ -10,14 +10,14 @@ inner join pjp_head ph on ph.pjp = sp.pjp
 where moc_no= 12
 group by s.LDESC, ph.pjp, ph.LDESC, PACKTYPE
 
-Declare @datefr date='20230401'
-Declare @dateTo date='20230430'
+Declare @datefr date='20230501'
+Declare @dateTo date='20230530'
 
 select ph.pjp pjpcode, ph.ldesc pjp, PACKTYPE, COUNT(up_code) pop from SUGGESTED_ORDER  so
 inner join sku s on s.MASTER_SKU = so.SKU_CODE
 inner join section_pop sp on sp.TOWN+sp.distributor+sp.LOCALITY+sp.slocality+sp.pop = replace(so.UP_CODE, '-', '')
 inner join pjp_head ph on ph.pjp = sp.pjp
-where moc_no= between right('0'+ cast(month(@datefr) as varchar),2) 
+where moc_no between right('0'+ cast(month(@datefr) as varchar),2) 
 		and right('0'+ cast(month(@dateTo) as varchar),2) and MOC_YEAR between year(@datefr) and year(@dateTo)
 group by ph.pjp, ph.LDESC, PACKTYPE
 
