@@ -9,7 +9,7 @@ Declare @sqlscript NVARCHAR(max);
 set @sqlscript = 
 'select * from (
 	select distinct v.description Vehicle, '+ 
-	--convert(varchar, @sdate, 112)+ ' as doc_date, ' 
+	convert(varchar, @sdate, 112)+ ' as doc_date, ' 
 	+'ph.LDESC PJP,m.LDESC SKU_desc, s.ldesc section_desc,
 	case 
 		when cast( round(Sum(norms_qty - isnull(achive_qty, 0)) / m.sell_factor1, 1) as int) <= 0 then 0
