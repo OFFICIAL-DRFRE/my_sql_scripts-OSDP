@@ -27,11 +27,13 @@ select stk.distributor, stk.sku, warehouse, sku_type,
 )
 select 
 		d.DISTRIBUTOR,
-		d.NAME KD_Name, @DATE doc_date,
-		w.LDESC warehouse, ty.ldesc 'SKU type',
+		@DATE doc_date,
+		ty.ldesc 'SKU type',
 		st.sku,s.ldesc 'SKU desc',
 		sum(cz) CS,sum(DZ) DZ,sum(PC) PC, 
-		sum(convert(int,(CZ * sell_factor1)+(DZ * sell_factor2)+PC)) 'Total in PC' 
+		sum(convert(int,(CZ * sell_factor1)+(DZ * sell_factor2)+PC)) 'Total in PC',
+		convert(float, round( sum(convert(int,(CZ * sell_factor1)+(DZ * sell_factor2)+PC))/s.SELL_FACTOR1, 2), 2) 'Total Cases',
+		convert(float, round(sum(convert(int,(CZ * sell_factor1)+(DZ * sell_factor2)+PC)) * ps.PRICE_UNIT3, 2), 2) 'Gross Stock Value' 
 		
 from stock st
 		inner join SKU s on s.SKU=st.sku
@@ -39,7 +41,5 @@ from stock st
 		inner join WAREHOUSE w on w.WAREHOUSE = st.warehouse
 		inner join sku_type ty on ty.sku_type = st.sku_type
 		inner join price_structure ps on ps.sku =st.sku and ps.price_struc = '0001'
-where 
-	s.ldesc like 'sunl%60x175g'
-group by d.DISTRIBUTOR,d.NAME, st.sku,s.ldesc, w.ldesc, ty.ldesc
+group by d.DISTRIBUTOR,d.NAME, st.sku,s.ldesc,ty.ldesc, s.SELL_FACTOR1,ps.PRICE_UNIT3
 order by s.LDESC asc

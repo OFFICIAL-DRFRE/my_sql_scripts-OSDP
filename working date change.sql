@@ -1,7 +1,5 @@
 declare @working_date datetime 
-declare @working_date datetime
- 
-set @working_date='20230620';
+set @working_date='20231027';
 
  
  update DISTRIBUTOR set WORKING_DATE=@working_date, CLOSING_DATE=@working_date

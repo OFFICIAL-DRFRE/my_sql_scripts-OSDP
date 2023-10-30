@@ -8,9 +8,9 @@ Declare @sqlscript NVARCHAR(max);
 
 set @sqlscript = 
 'select * from (
-	select distinct v.description Vehicle, '+ 
-	convert(varchar, @sdate, 112)+ ' as doc_date, ' 
-	+'ph.LDESC PJP,m.LDESC SKU_desc, s.ldesc section_desc,
+	select distinct v.description Vehicle, 
+	convert(varchar, @sdate, 23) as doc_date, 
+	ph.LDESC PJP,m.LDESC SKU_desc, s.ldesc section_desc,
 	case 
 		when cast( round(Sum(norms_qty - isnull(achive_qty, 0)) / m.sell_factor1, 1) as int) <= 0 then 0
 		else cast( round(Sum(norms_qty - isnull(achive_qty, 0)) / m.sell_factor1, 1) as int) end
@@ -30,5 +30,5 @@ set @sqlscript =
 where iq_balance > 0
 ';
 
-exec sp_executesql @sqlscript
+exec sp_executesql @sqlscript, N'@sdate date', @sdate
  
