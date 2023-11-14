@@ -3,7 +3,7 @@ select
 	d.distributor DT_code,d.name DT_name,
 	Town.ldesc as 'Town', 
 	convert(varchar, getdate(), 23) 'Report Date',
-	p.town+p.LOCALITY+p.SLOCALITY+p.POP as 'POP Code',
+	p.distributor+p.town+p.LOCALITY+p.SLOCALITY+p.POP as 'POP Code',
 	p.name as 'Customer Name',
 	p.PHONE_NO as 'Customer Contact', 
 	SUB_ELEMENT.LDESC as 'Channel Type',
