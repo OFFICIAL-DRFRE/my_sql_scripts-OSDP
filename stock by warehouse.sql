@@ -38,8 +38,8 @@ select
 from stock st
 		inner join SKU s on s.SKU=st.sku
 		inner join Distributor D on D.DISTRIBUTOR = st.DISTRIBUTOR
-		inner join WAREHOUSE w on w.WAREHOUSE = st.warehouse
+		inner join WAREHOUSE w on w.WAREHOUSE = st.warehouse and w.DISTRIBUTOR=st.DISTRIBUTOR
 		inner join sku_type ty on ty.sku_type = st.sku_type
-		inner join price_structure ps on ps.sku =st.sku and ps.price_struc = '0001'
+		inner join price_structure ps on ps.sku =st.sku and ps.price_struc = '0001' and ps.DISTRIBUTOR=st.DISTRIBUTOR
 group by d.DISTRIBUTOR,d.NAME, st.sku,s.ldesc,ty.ldesc, s.SELL_FACTOR1,ps.PRICE_UNIT3
 order by s.LDESC asc
