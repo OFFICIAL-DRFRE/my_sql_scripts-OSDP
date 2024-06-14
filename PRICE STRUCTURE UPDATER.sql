@@ -1,15 +1,15 @@
-Declare @price float= 70.07
-Declare @psku varchar(20)= '68820843'
+Declare @price float= 2.84
+Declare @psku varchar(20)= '69648038'
 Declare @pstruc varchar(4)='0001'
-Declare @e_date date = '20220715'
+Declare @e_date date = '20231001'
 SELECT * from PRICE_STRUCTURE where sku=@psku
 
 Update PRICE_STRUCTURE set 
   PRICE_UNIT3=@price,
   EFFECTIVE_DATE= @e_date,
-  PRICE_UNIT1=(select sell_factor1 from sku where sku=@psku)*@price, 
+  PRICE_UNIT1=(select sell_factor1 from sku where sku=@psku)*@price,  
   PRICE_UNIT2=(select sell_factor2 from sku where sku=@psku) *@price, 
-  DISTRIBUTOR=(select DISTRIBUTOR from distributor), EFFECTIVE_TODATE= CAST('20501231' AS datetime)
+  --DISTRIBUTOR=(select DISTRIBUTOR from distributor), EFFECTIVE_TODATE= CAST('20501231' AS datetime)
 where sku=@psku and PRICE_STRUC=@pstruc
 update PRICE_STRUCTURE set 
   PRICE_STANDARD=PRICE_UNIT1, RPRICE_UNIT1=PRICE_UNIT1, 
@@ -27,7 +27,7 @@ Update PRICE_STRUCTURE set
   EFFECTIVE_DATE= @e_date, 
   PRICE_UNIT1=(select sell_factor1 from sku where sku=@psku)*@price, 
   PRICE_UNIT2=(select sell_factor2 from sku where sku=@psku) *@price, 
-  DISTRIBUTOR=(select DISTRIBUTOR from distributor), EFFECTIVE_TODATE= CAST('20501231' AS datetime)
+  --DISTRIBUTOR=(select DISTRIBUTOR from distributor), EFFECTIVE_TODATE= CAST('20501231' AS datetime)
 where sku=@psku and PRICE_STRUC=@pstruc
 update PRICE_STRUCTURE set 
   PRICE_STANDARD=PRICE_UNIT1, RPRICE_UNIT1=PRICE_UNIT1, 

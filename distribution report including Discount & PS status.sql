@@ -1,6 +1,6 @@
 use Centegy_SnDPro_UET
 Declare @datefr date ='20230401'
-Declare @dateto date ='20230926'
+Declare @dateto date ='20230526'
 select 
 distinct cm.distributor 'KD Code',
 d.NAME 'KD Name',
@@ -11,10 +11,10 @@ convert(varchar,cm.DOC_DATE,23) Doc_date,
 Cm.DOC_NO,year(cm.DOC_DATE) 'Year',
 Month(cm.DOC_DATE)'Month',
 pj.pjp as  'pjp', 
+c.sku,
 ds.NAME AS DSR,S.LDESC 'SKU Name',
-c.sku,c.amount 'GSV',
 cast(((C.QTY1*s.sell_factor1)+(QTY2*s.sell_factor2)+(QTY3*s.sell_factor3)) as int) 'Number of pcs', 
-isnull( sum(sd.discount+sd.gst),0) 'Discount Amt',
+round( (sum(c.amount) + isnull( sum(sd.discount+sd.gst),0)*1.15), 2) 'NIV',
 case when p.PERFECT_STORE_LEVEL = '001' then 'No' else 'PS' end as 'PS staus'
 from CASHMEMO_DETAIL c
 inner join sku s on s.sku = c.sku
